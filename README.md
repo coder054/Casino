@@ -13,4 +13,5 @@ This repo already include the compiled code of contract file. If you want to re-
 ## How to deploy
 
 - node .\src\ethereum\deploy.js
-  Then copy the address that the contract is deployed to, finally paste it into src/ethereum/casino.js
+
+Then copy the address that the contract is deployed to, finally paste it into src/ethereum/casino.js
