@@ -8,6 +8,7 @@ const compiledCasino = require("./build/Casino.json");
 const provider = new HDWalletProvider(
   "shaft goat now feed only off process muffin current base chef bitter",
   "https://rinkeby.infura.io/orDImgKRzwNrVCDrAk5Q"
+  //"http://localhost:7545"
 );
 const web3 = new Web3(provider);
 

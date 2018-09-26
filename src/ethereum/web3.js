@@ -10,6 +10,7 @@ if (typeof window !== "undefined" && typeof window.web3 !== "undefined") {
 
   const provider = new Web3.providers.HttpProvider(
     "https://rinkeby.infura.io/orDImgKRzwNrVCDrAk5Q"
+    //"http://localhost:7545"
   );
 
   web3 = new Web3(provider);

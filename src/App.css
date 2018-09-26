@@ -1,0 +1,12 @@
+@import "~antd/dist/antd.css";
+
+div.HomeRoot {
+  max-width: 960px;
+  border: 1px solid #ddd;
+  margin: 30px auto 30px auto;
+  padding: 15px;
+}
+
+.ant-radio-group {
+  margin: 15px 0 !important;
+}
