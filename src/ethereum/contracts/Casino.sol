@@ -1,6 +1,10 @@
 pragma solidity ^0.4.0;
 
 contract Casino {
+
+    event FinaliseResult(uint resultNumber);
+    event Bet(address add,uint money, uint number);
+
     address manager;
     uint public lastWinnerNumer;
     uint public minimumMoney;
@@ -34,6 +38,7 @@ contract Casino {
         allUsers.push(msg.sender);
         totalMoney+= msg.value;
         totalBets++;
+        emit Bet(msg.sender, msg.value, _number) ;
         if(totalBets >= maxAllowBets){
             finalizeResult();
         }
@@ -52,7 +57,7 @@ contract Casino {
         ) = _getResultsInfo(resultNumber);
         _distributeMoney(totalValueOfUserChoseRight, resultNumber);
         lastWinnerNumer = resultNumber;
-
+        emit FinaliseResult(resultNumber);
     }
 
 
@@ -95,7 +100,9 @@ contract Casino {
     }
 
     function _isAlreadyBet(address _add) private view returns (bool) {
-        return usersInfo[_add].alreadyChosen;
+          return usersInfo[_add].alreadyChosen;
+        // we can also loop through allPlayers to check. But it cost more gas.
+        // That the purpose of alreadyChosen property
     }
 
     // function getBetInfo() public view returns (bool, uint, uint) {

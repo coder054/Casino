@@ -5,19 +5,11 @@ import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
 import { HashRouter } from "react-router-dom";
-import { Provider } from "mobx-react";
-import { useStrict } from "mobx";
-
-const stores = {};
-
-window.stores = stores;
 
 ReactDOM.render(
-  <Provider {...stores}>
-    <HashRouter>
-      <App />
-    </HashRouter>
-  </Provider>,
+  <HashRouter>
+    <App />
+  </HashRouter>,
   document.getElementById("root")
 );
 registerServiceWorker();

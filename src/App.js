@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 
 class App extends Component {

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { inject, observer } from "mobx-react";
 
 import { Radio, InputNumber, Divider, Button } from "antd";
 import casino from "../ethereum/casino";
@@ -20,17 +19,18 @@ class Home extends Component {
   };
 
   async componentWillMount() {
+    console.log(casino);
     let minimumMoney = await casino.methods.minimumMoney().call();
     let totalBets = await casino.methods.totalBets().call();
     let totalMoney = await casino.methods.totalMoney().call();
     let maxAllowBets = await casino.methods.maxAllowBets().call();
     let lastWinnerNumer = await casino.methods.lastWinnerNumer().call();
     let accounts = await web3.eth.getAccounts();
-    console.log(accounts);
+    // console.log(accounts);
 
     const getBetInfos = await casino.methods.getBetInfo(accounts[0]).call();
 
-    console.log(getBetInfos);
+    // console.log(getBetInfos);
     var betInfos = { ...this.state.betInfos };
     betInfos.isAlreadyBet = getBetInfos[0];
     betInfos.number = getBetInfos[1];
@@ -121,13 +121,21 @@ class Home extends Component {
     }
     this.setState({ loading: true });
     const accounts = await web3.eth.getAccounts();
-    console.log(accounts[0]);
+    // console.log(accounts[0]);
     try {
       await casino.methods.chooseNumber(this.state.number.toString()).send({
         from: accounts[0],
         value: web3.utils.toWei(this.state.money.toString(), "ether"),
         gas: "1000000"
       });
+
+      casino.events.Bet(function(event) {
+        console.log(event);
+        console.log(event.returnValues);
+        console.log("event triggered");
+      });
+
+      console.log(casino);
     } catch (err) {
       console.log(err);
     }
